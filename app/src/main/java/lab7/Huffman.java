@@ -8,10 +8,10 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Huffman {
-
+    
+    
     public static HashMap<Character, Integer> countFrequency(String str) {
         HashMap<Character, Integer> charFMap = new HashMap<>();
     }
