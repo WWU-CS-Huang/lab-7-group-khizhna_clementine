@@ -1,4 +1,6 @@
-// A
+// Author: Angelica Khizhnyak and Clementine Penrose
+// Date: 05.30.25
+// Description: Lab 7
 
 package lab7;
 
