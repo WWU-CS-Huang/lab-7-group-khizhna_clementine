@@ -19,6 +19,8 @@ public class Huffman {
         HashMap<Character, Integer> charFMap = new HashMap<>();
         char[] charArray = str.toCharArray();
 
+        // for each character in array, put the character in with the value being the frequency
+        // the frequency gets added up
         for (char c : charArray) {
             charFMap.put(c, charFMap.getOrDefault(c, 0) + 1);
         }
