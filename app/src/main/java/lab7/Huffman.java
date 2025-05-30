@@ -27,6 +27,9 @@ public class Huffman {
         return charFMap;
     }
 
+    public static void buildTheTree(HashMap<Character, Integer> map){
+        
+    }
     public static void main(String[] args) {
         // Setting up scanner and file
         String fileName = args[0];
