@@ -12,8 +12,17 @@ import java.util.HashMap;
 
 public class Huffman {
 
+    // returns a HashMap with each character and their frequency
+    // Pre: str is not empty
+    // Post: HashMap is returned
     public static HashMap<Character, Integer> countFrequency(String str) {
         HashMap<Character, Integer> charFMap = new HashMap<>();
+        char[] charArray = str.toCharArray();
+
+        for (char c : charArray) {
+            charFMap.put(c, charFMap.getOrDefault(c, 0) + 1);
+        }
+        return charFMap;
     }
 
     public static void main(String[] args) {
