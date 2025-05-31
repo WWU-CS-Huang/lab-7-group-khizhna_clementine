@@ -8,14 +8,14 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.HashMap;
 
 //added these two for building 
 import java.util.PriorityQueue;
 import java.util.Map;
 
 public class Huffman {
-
+    
+    
     //Here is the trienode class necessary for the building
     static class TrieNode implements Comparable<TrieNode>{
         
