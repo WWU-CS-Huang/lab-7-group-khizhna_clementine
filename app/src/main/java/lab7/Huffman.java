@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.HashMap;
 
 //added these two for building 
 import java.util.PriorityQueue;
@@ -63,7 +64,7 @@ public class Huffman {
     // returns a Huffman tree 
     //Pre: map is not empty
     //Post: Huffman tree returned
-    public static void buildTheTree(HashMap<Character, Integer> map){
+    public static TrieNode buildTheTree(HashMap<Character, Integer> map){
         //forest for all leaf nodes to be put in
         PriorityQueue<TrieNode> forest = new PriorityQueue<>();
         //for the amount of entries in the map
