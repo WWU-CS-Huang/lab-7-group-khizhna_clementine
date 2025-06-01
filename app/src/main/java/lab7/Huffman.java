@@ -85,6 +85,7 @@ public class Huffman {
         return forest.poll();
     }
 
+    
     public static void main(String[] args) {
         // Setting up scanner and file
         String fileName = args[0];
