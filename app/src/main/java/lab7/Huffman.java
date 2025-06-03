@@ -86,6 +86,35 @@ public class Huffman {
         return forest.poll();
     }
 
+    // Decodes a given bitstring
+    // Pre: Tree and String not empty/null
+    // Post: decodes and returns original input string
+    public static String decode(TrieNode huffmanTree, String strToDecode) {
+        // decoded string that gets returned at end
+        String decoded = "";
+        TrieNode cur = huffmanTree;
+
+        // iterates through every bit
+        for (int i = 0; i < strToDecode.length(); i++) {
+            char val = strToDecode.charAt(i);
+
+            // 0's and 1's represent the path to the correct character. 0 -> left and 1 -> right
+            if (val == '0') {
+                cur = cur.left;
+            } else if (val == '1') {
+                cur = cur.right;
+            } else {
+                throw new IllegalArgumentException();
+            }
+
+            // reached a leaf node that contains correct character
+            if (cur.left == null && cur.right == null) {
+                decoded += cur.character;
+                cur = huffmanTree; // reset for next part of code
+            }
+        }
+        return decoded;
+    }
 
     //returns a compressed binary representation of input string
     //Pre-con: Huffman tree is not malformed
@@ -111,6 +140,8 @@ public class Huffman {
         }
         return encodedStr;
     }
+
+    // NOTE: line 153 meant to be buildEncodingTable?
 
     //creates and returns HashMap encoding table representation of input huffmantree
     //Pre-con: huffman tree is not malformed
