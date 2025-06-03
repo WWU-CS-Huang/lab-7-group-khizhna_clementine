@@ -86,6 +86,60 @@ public class Huffman {
         return forest.poll();
     }
 
+
+    //returns a compressed binary representation of input string
+    //Pre-con: Huffman tree is not malformed
+    //Post-con: returned binary representation of input string
+    public static String encode(TrieNode huffmanTree, String strToEncode){
+        //create encoding table based off huffmanTree
+        HashMap<Character, String> encodingTable = createEncodingTable(huffmanTree);
+
+        //make the string to be returned at the end and a char array representation of input string
+        String encodedStr = "";
+        char[] chars = strToEncode.toCharArray();
+
+        //for length of input string
+        for(int i = 0; i < chars.length; i++){
+            //get the code for the current character
+            String code = encodingTable.get(chars[i]);
+            //if its not null, add it to return string else, throw exception
+            if(code != null){
+                encodedStr = encodedStr + code;
+            }else{
+                throw new IllegalArgumentException();
+            }
+        }
+        return encodedStr;
+    }
+
+    //creates and returns HashMap encoding table representation of input huffmantree
+    //Pre-con: huffman tree is not malformed
+    //Post-con: returned complete encoding table
+    public static HashMap<Character, String> createEncodingTable(TrieNode huffmanTree){
+        //initalize encoding Table as a HashMap of character and string
+        HashMap<Character, String> encodingTable = new HashMap<>();
+        //build the encoding table
+        buildEncodingTree(huffmanTree, "", encodingTable);
+        return encodingTable;
+    }
+
+    //builds encoding table based off of given node
+    public static void buildEncodingTable(TrieNode node, String path, HashMap<Character, String> map){
+        //if the node is null just return
+        if(node == null){
+            return;
+        }
+        //if the node is a leaf, put it in the map and return
+        if(node.left == null && node.right == null){
+            map.put(node.character, path);
+            return;
+        }
+
+        //recurse through huffmanTree
+        buildEncodingTable(node.left, path + "0", map);
+        buildEncodingTable(node.right, path + "1", map);
+    }
+
     
     public static void main(String[] args) {
         // Setting up scanner and file
