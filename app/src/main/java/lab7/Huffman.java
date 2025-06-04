@@ -141,8 +141,6 @@ public class Huffman {
         return encodedStr;
     }
 
-    // NOTE: line 153 meant to be buildEncodingTable?
-
     //creates and returns HashMap encoding table representation of input huffmantree
     //Pre-con: huffman tree is not malformed
     //Post-con: returned complete encoding table
@@ -150,7 +148,7 @@ public class Huffman {
         //initalize encoding Table as a HashMap of character and string
         HashMap<Character, String> encodingTable = new HashMap<>();
         //build the encoding table
-        buildEncodingTree(huffmanTree, "", encodingTable);
+        buildEncodingTable(huffmanTree, "", encodingTable);
         return encodingTable;
     }
 
@@ -184,7 +182,22 @@ public class Huffman {
         } catch (FileNotFoundException e) {
             return;
         }
-        
-        
+        sc.useDelimiter("\\Z"); // This line makes the scanner read through the entire file without using a loop
+
+        // This reads the entire file into one string
+        String input = "";
+        if (sc.hasNext()) {
+            input = sc.nextLine();
+        } else {
+            input = ""; // if there is nothing in the file then the input is empty
+        }
+        sc.close();
+
+        // counts frequency of each character, creates map, and uses map to build the tree
+        HashMap<Character, Integer> frequencyMap = countFrequency(input);
+        TrieNode root = buildTheTree(frequencyMap);
+        // encodes and decodes the file
+        String encoded = encode(root, input);
+        String decoded = decode(root, input);
     }
 }
