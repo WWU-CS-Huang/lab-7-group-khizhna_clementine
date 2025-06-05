@@ -195,5 +195,15 @@ public class Huffman {
             System.out.println("Encoded bitstring: " + encoded);
             System.out.println("Decoded: " + decoded);
         }
+
+        boolean inputEqualDecoded = input.equals(decoded);
+        if(inputEqualDecoded){
+            System.out.println("Input is equal to decoded output");
+        }else {
+            System.out.println("Input is not equal to decoded output");
+        }
+
+        float compressionRatio = (float) encoded.length() / (input.length() * 8.0f);
+        System.out.println("Compression Ratio is: " + compressionRatio);
     }
 }
