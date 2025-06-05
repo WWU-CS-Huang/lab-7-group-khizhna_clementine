@@ -173,31 +173,23 @@ public class Huffman {
     public static void main(String[] args) {
         // Setting up scanner and file
         String fileName = args[0];
-        File file = new File(fileName);
-        Scanner sc;
-
-        try {
-            sc = new Scanner(file);
-
-        } catch (FileNotFoundException e) {
-            return;
-        }
-        sc.useDelimiter("\\Z"); // This line makes the scanner read through the entire file without using a loop
-
-        // This reads the entire file into one string
         String input = "";
-        if (sc.hasNext()) {
-            input = sc.nextLine();
-        } else {
-            input = ""; // if there is nothing in the file then the input is empty
+        try (Scanner sc = new Scanner(new File(fileName))) {
+               while (sc.hasNextLine()) {
+                   String line = sc.nextLine();
+                   input = input + line;
+               }
+        } catch (FileNotFoundException e) {
+           e.printStackTrace();
         }
-        sc.close();
 
         // counts frequency of each character, creates map, and uses map to build the tree
         HashMap<Character, Integer> frequencyMap = countFrequency(input);
         TrieNode root = buildTheTree(frequencyMap);
         // encodes and decodes the file
         String encoded = encode(root, input);
-        String decoded = decode(root, input);
+        System.out.println("Encoded: " + encoded);
+        String decoded = decode(root, encoded);
+        System.out.println("Decoded: " + decoded);
     }
 }
