@@ -186,10 +186,14 @@ public class Huffman {
         // counts frequency of each character, creates map, and uses map to build the tree
         HashMap<Character, Integer> frequencyMap = countFrequency(input);
         TrieNode root = buildTheTree(frequencyMap);
-        // encodes and decodes the file
+        // encodes input and decodes encoded input
         String encoded = encode(root, input);
-        System.out.println("Encoded: " + encoded);
         String decoded = decode(root, encoded);
-        System.out.println("Decoded: " + decoded);
+        //if length is less than 100, print the input, encoded string, and decoded encoded string
+        if(input.length() < 100){
+            System.out.println("Input String: " + input);
+            System.out.println("Encoded bitstring: " + encoded);
+            System.out.println("Decoded: " + decoded);
+        }
     }
 }
